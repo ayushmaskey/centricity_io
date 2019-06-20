@@ -14,7 +14,8 @@
 `pyinstaller --onefile main.spec`
 
 
-##Testing
+## Testing
+
 `python main.py "/o" "pwd\test\temp_file.txt" "/i" "1|case manager"`
 
 `main.exe "/o" "pwd\test\temp_file.txt" "/i" "1|test"`
