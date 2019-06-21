@@ -9,16 +9,16 @@
     pwd: password for user
 
 ## Create .exe from .py
-`pyinstaller  --onefile main.py`
+`pyinstaller  --onefile  main.py`
 
 `pyinstaller --onefile main.spec`
 
 
 ## Testing
 
-`python main.py "/o" "pwd\test\temp_file.txt" "/i" "1|case manager"`
+` python centricity_io.py "/o" "..\\log\\test.log" "/i" "1|case manager" `
 
-`main.exe "/o" "pwd\test\temp_file.txt" "/i" "1|test"`
+` centricity_io.exe "/o" "..\\log\\test.log" "/i" "1|case manager" `
 
 `main.exe "/o" "tes.tmp" "/i" "1|test"`
 
