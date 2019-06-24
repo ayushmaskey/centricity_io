@@ -9,16 +9,16 @@
     pwd: password for user
 
 ## Create .exe from .py
-`pyinstaller  --onefile  main.py`
+`pyinstaller  --onedir --onefile  cps_io.py`
 
 `pyinstaller --onefile main.spec`
 
 
 ## Testing
 
-` python centricity_io.py "/o" "..\\log\\test.log" "/i" "1|case manager" `
+` python cps_io.py "/o" "..\\log\\test.log" "/i" "1|case manager" `
 
-` centricity_io.exe "/o" "..\\log\\test.log" "/i" "1|case manager" `
+` cps_io.exe "/o" "..\\log\\test.log" "/i" "1|case manager" `
 
 `main.exe "/o" "tes.tmp" "/i" "1|test"`
 

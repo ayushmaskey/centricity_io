@@ -1,6 +1,8 @@
 """Decide which sql statemnt to build depending on argument from centricity."""
 
 from sql import sql_query
+from cps_logging import config_logging
+logger = config_logging()
 
 
 def cps_parameter_parse(param):
@@ -16,21 +18,31 @@ def cps_parameter_parse(param):
     >>> cps_parameter_parse(error_param)
     'Input error'
     """
+    logger.debug(f'{__name__}: parameter passes was {param}')
     input_str = param.split('|')
     return_str = ""
-    input_str[0] = int(input_str[0])
-    input_str[1] = input_str[1].strip()
+
+    try:
+        query_switch = int(input_str[0])
+        query = input_str[1].strip()
+        logger.debug(f'{__name__}: Query switch - {query_switch}' +
+                     f' Query - {query}')
+    except ValueError:
+        logger.warning(f"{__name__}: Error converting to int")
+    except Exception:
+        logger.warning(f'{__name__} Unknown error:', exec_info=True)
 
     # 0 --> testing
-    if input_str[0] == 0:
+    if query_switch == 0:
+        logger.warning(f'{__name__}: Query switch should not be 0')
         return_str = "Zero"
     # 1 --> query by jobTitle
-    elif input_str[0] == 1:
-        result = sql_query.query_by_job_title(input_str[1])
+    elif query_switch == 1:
+        result = sql_query.query_by_job_title(query)
         return_str = result
-
     # discard unknown argument
     else:
+        logger.warning(f'{__name__}: Query switch should unknown')
         return_str = "Input error"
 
     return return_str

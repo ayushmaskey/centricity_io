@@ -1,34 +1,72 @@
 """Central logging for whole app."""
 
 import logging
+from pathlib import Path
 from datetime import datetime
-from file_directory_exists import dir_exists
-import os
+
+
+def dir_exists(dirName):
+    r"""Check if directory exists, if not create the directory.
+
+    >>> import os
+    >>> from pathlib import Path
+    >>> dir_path = os.getcwd() + "\\log\\"
+    >>> print(dir_path)
+    R:\05_Ayush\Python\cps_io\log\
+    >>> dir_exists(dir_path)
+    True
+    >>> Path(dir_path).is_dir()
+    True
+    >>> dir_path = os.getcwd() + "\\log\\"
+    >>> dir_exists(dir_path)
+    True
+    """
+    path = Path(dirName)
+    if not path.is_dir():
+        try:
+            path.mkdir()
+        except FileExistsError:
+            logger = config_logging()
+            logger.warning(f'Count not create {dirName} directory.')
+    return path.is_dir()
+
+
+def temp_output_file_exists(fileName):
+    r"""Check if temp file from centricity exists.
+
+    >>> import os
+    >>> from pathlib import Path
+    >>> dir_path = os.getcwd() + "\\log\\"
+    >>> filename = dir_path + "test.log"
+    >>> filename1 = dir_path + "test1.log"
+    >>> temp_output_file_exists(filename)
+    True
+    >>> temp_output_file_exists(filename1)
+    False
+    """
+    path = Path(fileName)
+    return path.is_file()
 
 
 def config_logging():
     """Test."""
-    # Custom Logger
-    logger = logging.getLogger(__name__)
-
-    # create log file and folder
-    dir_path = os.getcwd() + "\\log\\"
-    dir_exists(dir_path)
+    # Variables
     filename = __name__ + '_' + datetime.now().strftime('%Y-%m-%d') + '.log'
-    file_path = dir_path + filename
+    format = '%(asctime)s - %(levelname)s: %(message)s '
+    loglevel = logging.WARNING
 
-    # Handlers
-    file_handler = logging.FileHandler(file_path)
-    logging.getLogger().setLevel(logging.DEBUG)
-
-    # Log Format
-    format = '%(asctime)s - (%(name)s) %(levelname)s: %(message)s '
-    log_format = logging.Formatter(format)
-    file_handler.setFormatter(log_format)
-
-    # Add handler to Logger
-    logger.addHandler(file_handler)
-
-    logger.debug('This is warning from config_logging function')
-
+    logger = logging.getLogger(__name__)
+    if not logger.hasHandlers():
+        logger.setLevel(loglevel)
+        stream_handler = logging.FileHandler(filename)
+        formattr = logging.Formatter(format)
+        stream_handler.setFormatter(formattr)
+        logger.addHandler(stream_handler)
+        logger.setLevel(loglevel)
+        logger.handler_set = True
     return logger
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
