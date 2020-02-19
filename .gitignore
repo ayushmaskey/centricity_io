@@ -103,6 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# sql conection
+# additional uncommit
 app/config.json
 .vscode
+src
