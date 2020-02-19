@@ -105,3 +105,4 @@ venv.bak/
 
 # sql conection
 app/config.json
+.vscode
