@@ -17,6 +17,7 @@ pip install sql
 pip install pyinstaller
 pip install flake8 #tab vs space - ignore Error W191 in setting.json & increase the max-line-length
 pip install pylint
+pip install preprocessing
 doctest, sys, datetime, logging, pathlib, unittest, os #should be installed by default
 ```
 

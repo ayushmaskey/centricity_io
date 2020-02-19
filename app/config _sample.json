@@ -1,0 +1,8 @@
+{
+    "servername": "serverName.domain.com",
+    "db": "centricityps",
+    "username": "readonly_user",
+    "password": "password"
+}
+
+
