@@ -1,6 +1,6 @@
 """Decide which sql statemnt to build depending on argument from centricity."""
 
-from sql import sql_query
+from sql.sql_query import query_by_job_title
 from cps_logging import config_logging
 logger = config_logging()
 
@@ -38,11 +38,12 @@ def cps_parameter_parse(param):
         return_str = "Zero"
     # 1 --> query by jobTitle
     elif query_switch == 1:
-        result = sql_query.query_by_job_title(query)
+        result = query_by_job_title(query)
+        logger.debug(f'{__name__} Parsed output --> {result}')
         return_str = result
     # discard unknown argument
     else:
-        logger.warning(f'{__name__}: Query switch should unknown')
+        logger.warning(f'{__name__}: Query switch is unknown')
         return_str = "Input error"
 
     return return_str

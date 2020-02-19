@@ -1,9 +1,9 @@
 """Get argument from Centricity and return SQL result."""
 
 # !/usr/bin/python3
-import parse_input
-from cps_logging import config_logging, temp_output_file_exists
 import sys
+from parse_input import cps_parameter_parse
+from cps_logging import config_logging, temp_output_file_exists
 from datetime import datetime
 
 logger = config_logging()
@@ -17,7 +17,7 @@ def get_details_from_argument(argv):
     >>> print(f"{output_file}")
     .\log\test.log
     >>> input_str
-    '1|case manager'
+    '1|preloader'
     """
     try:
         # output_file_identifier = argv[0]
@@ -40,7 +40,7 @@ def cps_temp_file_output(argv):
 
     >>> param = ["/o", ".\\log\\test.log", "/i", "1|preloader"]
     >>> cps_temp_file_output(param)
-    c y test  [ctest]
+    'c y test  [ctest]'
     """
     logger.debug(f'{__name__}: Input from CPS ' + str(argv))
     output_file, input_str = get_details_from_argument(argv)
@@ -48,13 +48,15 @@ def cps_temp_file_output(argv):
 
     if output_file_exists:
         logger.debug(f'{__name__}: Output temp file found.')
-        result = parse_input.cps_parameter_parse(input_str)
+        result = cps_parameter_parse(input_str)
         logger.info(result)
         file = open(output_file, "w")
         file.write(result)
         file.close()
     else:
         logger.warning(f'{__name__}: Output temp file not found.')
+        result = "Can't find output file"
+    return result
 
 
 def test():

@@ -1,7 +1,7 @@
 """Build query to pass into sql_connection."""
 
-from sql.sql_connection import sqlConn
-from sql.sql_result_to_string import sql_result_comma_separate_first_column
+from .sql_connection import sqlQuery
+from .sql_result_to_string import sql_result_comma_separate_first_column
 from cps_logging import config_logging
 logger = config_logging()
 
@@ -25,8 +25,10 @@ def query_by_job_title(job_title):
     ) % (job_title)
     logger.debug(f'{__name__}: Query string is {query}')
 
-    rows = sqlConn(query)
+    rows = sqlQuery(query)
+    logger.debug(f'{__name__}: Return rows --> {rows}')
     result = sql_result_comma_separate_first_column(rows)
+    logger.debug(f'{__name__}: Cleaned up result --> {result}')
     return result
 
 

@@ -12,7 +12,7 @@ def dir_exists(dirName):
     >>> from pathlib import Path
     >>> dir_path = os.getcwd() + "\\log\\"
     >>> print(dir_path)
-    R:\05_Ayush\Python\cps_io\log\
+    R:\05_Ayush\Python\cps_io\app\log\
     >>> dir_exists(dir_path)
     True
     >>> Path(dir_path).is_dir()
@@ -36,7 +36,11 @@ def temp_output_file_exists(fileName):
 
     >>> import os
     >>> from pathlib import Path
+    >>> print(f'{os.getcwd()}')
+    R:\05_Ayush\Python\cps_io\app
     >>> dir_path = os.getcwd() + "\\log\\"
+    >>> print(f'{dir_path}')
+    R:\05_Ayush\Python\cps_io\app\log\
     >>> filename = dir_path + "test.log"
     >>> filename1 = dir_path + "test1.log"
     >>> temp_output_file_exists(filename)
@@ -68,5 +72,6 @@ def config_logging():
 
 
 if __name__ == "__main__":
+
     import doctest
-    doctest.testmod()
+    doctest.testmod(name='logging')
