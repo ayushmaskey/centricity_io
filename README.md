@@ -17,16 +17,15 @@ pip install sql
 pip install pyinstaller
 pip install flake8 #tab vs space - ignore Error W191 in setting.json & increase the max-line-length
 pip install pylint
-pip install preprocessing
 doctest, sys, datetime, logging, pathlib, unittest, os #should be installed by default
 ```
 
-### sql connection edits
-1. need to move this into config file
-    servername: centricity database server name
-    db: centricity database rename
-    username: user account with read only access to centricity database
-    pwd: password for user
+### sql connection config file
+rename config_sample.json to config.json
+servername: centricity database server name
+db: centricity database name
+username: user account with read only access to centricity database
+pwd: password for user
 
 ### logging levelname --> for debug
 1. .\cps_io\app\logging --> change `loglevel = logging.WARNING` to `loglevel = logging.DEBUG`
