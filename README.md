@@ -3,6 +3,7 @@
 ## Usage
 1. get comma separated users by job title
 ```Centricity
+local testPath = dir_emr() + numtoascii(92) + "New Folder" + numtoascii(92)+ "cps_io.exe"
 local argStr = "/i 1|case manager"
 local caseManager = RunTextProcess(testPath, argStr)
 ```
@@ -86,4 +87,8 @@ pyinstaller --onedir --onefile --windowed  cps_io.py
 .\dist\cps_io.exe "/o" ".\\log\\test.log" "/i" "1|case manager" 
 ```
 
-
+### copy exe to all the the terminal servers / fat clients
+```bash
+dir_emr() --> default c:\program file x86\Centricity Practive Solution\Client
+Create a new Folder --> copy exe file in there
+``` 
