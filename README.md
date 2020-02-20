@@ -55,7 +55,7 @@ change comment in __main__
 ```
 
 ### Unittest
-```python
+```bash
 #Using context.py file to import main project folder cps_io (parent of test folder) into python path
 #Run from .\cps_io\app
 python ..\test\test_app.py -v
@@ -65,7 +65,7 @@ python ..\test\test_io.py -v
 
 ### Complete app Testing
 
-```python
+```bash
 #Run from .\cps_io\app
 #Using context.py file to import modules  
 python cps_io.py "/o" ".\\log\\test.log" "/i" "1|case manager" 
@@ -75,14 +75,14 @@ python cps_io.py "/o" ".\\log\\test.log" "/i" "1|case manager"
 ## Convert to .exe and test
 
 ### create .exe from .py
-```python
+```bash
 #Run from .\cps_io\app 
 pyinstaller --onedir --onefile --windowed  cps_io.py
 # pyinstaller --onefile cps_io.spec
 ```
 
 ### test .exe
-```python
+```bash
 .\dist\cps_io.exe "/o" ".\\log\\test.log" "/i" "1|case manager" 
 ```
 

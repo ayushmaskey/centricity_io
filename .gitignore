@@ -107,3 +107,4 @@ venv.bak/
 app/config.json
 .vscode
 src
+test/temp_file.txt
