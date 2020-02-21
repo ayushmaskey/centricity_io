@@ -1,7 +1,7 @@
 """Decide which sql statemnt to build depending on argument from centricity."""
 
 from sql.sql_query import query_by_job_title
-from cps_logging import config_logging
+from log.cps_logging import config_logging
 logger = config_logging()
 
 

@@ -2,8 +2,9 @@
 
 # !/usr/bin/python3
 import sys
-from parse_input import cps_parameter_parse
-from cps_logging import config_logging, temp_output_file_exists
+# print(sys.path)
+from cps.parse_input import cps_parameter_parse
+from log.cps_logging import config_logging, temp_output_file_exists
 from datetime import datetime
 
 logger = config_logging()
@@ -65,7 +66,7 @@ def test():
     doctest.testmod()
 
     import os
-    from cps_logging import dir_exists
+    from log.cps_logging import dir_exists
     dir_path = os.getcwd() + "\\log\\"
     filename = __name__ + '_' + datetime.now().strftime('%Y-%m-%d') + '.log'
     file_path = dir_path + filename

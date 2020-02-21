@@ -1,6 +1,6 @@
 """Convert SQL rows into comma separated string.."""
 
-from cps_logging import config_logging
+from log.cps_logging import config_logging
 logger = config_logging()
 
 

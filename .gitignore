@@ -104,7 +104,7 @@ venv.bak/
 .mypy_cache/
 
 # additional uncommit
-app/config.json
+app/config/config.json
 .vscode
 src
 test/temp_file.txt

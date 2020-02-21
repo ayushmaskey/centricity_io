@@ -57,7 +57,7 @@ def config_logging():
     # Variables
     filename = __name__ + '_' + datetime.now().strftime('%Y-%m-%d') + '.log'
     format = '%(asctime)s - %(levelname)s: %(message)s '
-    loglevel = logging.WARNING
+    loglevel = logging.DEBUG
 
     logger = logging.getLogger(__name__)
     if not logger.hasHandlers():

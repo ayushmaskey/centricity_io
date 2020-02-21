@@ -2,7 +2,7 @@
 
 from .sql_connection import sqlQuery
 from .sql_result_to_string import sql_result_comma_separate_first_column
-from cps_logging import config_logging
+from log.cps_logging import config_logging
 logger = config_logging()
 
 
