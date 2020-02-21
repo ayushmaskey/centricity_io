@@ -27,7 +27,7 @@ doctest, sys, datetime, logging, pathlib, unittest, os #should be installed by d
 
 ### sql connection config file
 
-rename config_sample.json to config.json
+rename config_sample.py to config.py
 servername: centricity database server name
 db: centricity database name
 username: user account with read only access to centricity database
@@ -87,30 +87,28 @@ python cps_io.py "/o" ".\\log\\test.log" "/i" "1|case manager"
 
 ```bash
 #Run from .\cps_io\app
-pyinstaller --onedir --onefile --windowed --add-data './config.json;./' cps_io.py
+pyinstaller --onedir --onefile --windowed cps_io.py
 * --onedir --> one folder bundle
 * --onefile --> one file bundled executable
 * --windowed / --noconsole --> do not show console
-* --add-data './config.json;./' --> add extra file src;dst
-
-#test execute in powershell --> if error (failed to execute) --> run without --windowed
-pyinstaller --onefile  cps_io.py
-
-#make spec file first
-pyi-makespec --onefile --windowed --name cps_io cps_io.py
-#edit spec file cop_io.spec
-a = Analysis([cps_io.py],
-    pathex=['path_to_file'],
-    datas=[ ('config.json', '.') ],
-    ....)
-
-#pyinstaller --onefile --clean cps_io.spec
+* --add-data 'config/config.json;config' --> add extra file "src;dst"
+    --> could not get json config it to work
+    --> json file does not get included during pyinstaller
+    --> even with --add-data
+    --> simple solution was to convert config.json to config.py
 ```
 
-### test .exe
+### test .exe within environment
 
 ```bash
 .\dist\cps_io.exe "/o" ".\\log\\test.log" "/i" "1|case manager"
+```
+
+### test .exe outside environment --> powershell
+
+```bash
+#Copy exe file --> create log\test.log --> run
+.\cps_io.exe "/o" ".\\log\\test.log" "/i" "1|case manager"
 ```
 
 ### copy exe to all the the terminal servers / fat clients

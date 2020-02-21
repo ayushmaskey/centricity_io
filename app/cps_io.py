@@ -75,5 +75,7 @@ def test():
 
 
 if __name__ == "__main__":
-    cps_temp_file_output(sys.argv[1:])
-    # test()
+    if len(sys.argv) > 1:
+        cps_temp_file_output(sys.argv[1:])
+    else:
+        test()

@@ -1,7 +1,8 @@
 """Function to initialize connection  to SQL Server."""
 
 import pyodbc
-import json
+# import json
+import config.config as cfg
 from log.cps_logging import config_logging
 logger = config_logging()
 
@@ -9,7 +10,8 @@ logger = config_logging()
 def sqlConnection():
     logger.debug(f'{__name__}.sqlConnection Method entry success.')
 
-    # open json
+    """
+    # json config --> json file not getting included in exe
     config_json_file = './config/config.json'
     try:
         with open(config_json_file) as config_file:
@@ -17,14 +19,20 @@ def sqlConnection():
     except IOError:
         logger.warning(f'{__name__}.sqlConnection: cannot open {config_json_file}')
 
+    conn_string = (
+        f'DRIVER={odbc_driver_10}; SERVER={sql["servername"]};'
+        f'DATABASE={sql["db"]}; UID={sql["username"]}; PWD={sql["password"]}'
+    )
+    """
+
     # driver options
     odbc_driver_10 = '{SQL Server Native Client 10.0}'
     # basic_sql_driver = '{SQL Server}'
     # odbc_driver_13 = '{ODBC Driver 13 for SQL Server}'
 
     conn_string = (
-        f'DRIVER={odbc_driver_10}; SERVER={sql["servername"]};'
-        f'DATABASE={sql["db"]}; UID={sql["username"]}; PWD={sql["password"]}'
+        f'DRIVER={odbc_driver_10}; SERVER={cfg.servername()};'
+        f'DATABASE={cfg.db()}; UID={cfg.username()}; PWD={cfg.password()}'
     )
 
     try:
